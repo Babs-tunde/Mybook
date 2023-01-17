@@ -1,12 +1,13 @@
 
 
 <div>
-    <form method="get">
-        <input type="text" name="ISBN" placeholder="Search by ISBN " value="{{ request.GET.ISBN }}">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="ISBN" placeholder="Search by ISBN " >
         <input type="submit" value="Search">
     </form>
 </div>
-
+<p>Register your books here <a href="{% url 'register_book'  %}">register</a> </p>
 <div>
     <h1>Book List</h1>
     <table>

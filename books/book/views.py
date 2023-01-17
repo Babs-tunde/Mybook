@@ -29,8 +29,9 @@ def edit_book(request, pk):
 
 
 def book_list(request):
-    if request.method == 'FILTER':
-        books = BookInfo.objects.GET.get(ISBN)
+    if request.method == 'POST':
+        ISBN = request.POST["ISBN"]
+        books = BookInfo.objects.filter(ISBN=ISBN)
     else:
         books = BookInfo.objects.all()
 
@@ -38,9 +39,9 @@ def book_list(request):
     return render(request, 'book_list.html', context)
 
 # def book_list(request):
-#     query = request.GET.get('q')
+#     query = request.GET.get('ISBN')
 #     if query:
-#         books = BookInfo.objects.filter(Q(ISBN__icontains=query))
+#         books = BookInfo.objects.filter(ISBN__icontains=query)
 #     else:
 #         books = BookInfo.objects.all()
 #     context = {'books': books}
